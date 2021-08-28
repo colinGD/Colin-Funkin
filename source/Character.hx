@@ -105,7 +105,49 @@ class Character extends FlxSprite
 				addOffset('danceRight', 0);
 
 				playAnim('danceRight');
+				
+			case 'gf-tankmen':
+				frames = Paths.getSparrowAtlas('gfTankmen');
+				
+				animation.addByPrefix('cheer', 'GF Dancing at Gunpoint', 24, false);
+				animation.addByPrefix('singLEFT', 'GF Crying at Gunpoint', 24, false);
+				animation.addByPrefix('singRIGHT', 'GF Crying at Gunpoint', 24, false);
+				animation.addByPrefix('singUP', 'GF Crying at Gunpoint', 24, false);
+				animation.addByPrefix('singDOWN', 'GF Crying at Gunpoint', 24, false);
+				animation.addByIndices('sad', 'GF Crying at Gunpoint ', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "", 24, false);
+				animation.addByIndices('danceLeft', 'GF Dancing at Gunpoint', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
+				animation.addByIndices('danceRight', 'GF Dancing at Gunpoint', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
+				
+				addOffset('cheer');
+				addOffset("singUP", 0, 4);
+				addOffset("singRIGHT", 0, -20);
+				addOffset("singLEFT", 0, -19);
+				addOffset("singDOWN", 0, -20);
+				addOffset('sad', -2, -21);
+				addOffset('danceLeft', 0, -9);
+				addOffset('danceRight', 0, -9);
+				updateHitbox();
+				
 
+				playAnim('danceRight');
+			case 'picoSpeaker':
+				// PICO WHEN HE IS SUSSY
+				tex = Paths.getSparrowAtlas('picoSpeaker');
+				frames = tex;
+				
+				animation.addByIndices('idle', 'Pico shoot 1', [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24], "", 24, true);
+
+				animation.addByIndices('shoot1', 'Pico shoot 1', [0, 1, 2, 3, 4, 5, 6, 7], "", 24, true);
+				animation.addByIndices('shoot2', 'Pico shoot 2', [0, 1, 2, 3, 4, 5, 6, 7], "", 24, false);
+				animation.addByIndices('shoot3', 'Pico shoot 3', [0, 1, 2, 3, 4, 5, 6, 7], "", 24, false);
+				animation.addByIndices('shoot4', 'Pico shoot 4', [0, 1, 2, 3, 4, 5, 6, 7], "", 24, false);
+				
+				addOffset('shoot1', 0, 0);
+				addOffset('shoot2', -1, -128);
+				addOffset('shoot3', 412, -64);
+				addOffset('shoot4', 439, -19);
+
+				playAnim('shoot1');
 			case 'gf-pixel':
 				tex = Paths.getSparrowAtlas('weeb/gfPixel');
 				frames = tex;
@@ -121,6 +163,43 @@ class Character extends FlxSprite
 				setGraphicSize(Std.int(width * PlayState.daPixelZoom));
 				updateHitbox();
 				antialiasing = false;
+
+			case 'bf-holding-gf':
+				frames = Paths.getSparrowAtlas('bfAndGF');
+				animation.addByPrefix('idle', 'BF idle dance w gf0', 24, false);
+				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
+				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
+				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
+				animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
+				animation.addByPrefix('singUPmiss', 'BF NOTE UP MISS0', 24, false);
+				animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS0', 24, false);
+				animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS0', 24, false);
+				animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS0', 24, false);
+				animation.addByPrefix('scared', 'BF NOTE DOWN MISS0', 24, false);
+			        animation.addByPrefix('hey', 'BF catches GF0', 24, false);
+				
+				
+
+				
+
+				addOffset('idle', 0, 0);
+				addOffset("singUP", -29, 10);
+				addOffset("singRIGHT", -41, 23);
+				addOffset("singLEFT", 12, 7);
+				addOffset("singDOWN", -10, -10);
+				addOffset("singUPmiss", -29, 10);
+				addOffset("singRIGHTmiss", -41, 23);
+				addOffset("singLEFTmiss", 12, 7);
+				addOffset("singDOWNmiss", -10, -10);
+				addOffset("scared", -10, -10);
+			        addOffset('hey', 0, 0);
+				
+				
+
+				playAnim('idle');
+
+				flipX = true;
+
 
 			case 'dad':
 				// DAD ANIMATION LOADING CODE
@@ -167,7 +246,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('singDOWN', "MOM DOWN POSE", 24, false);
 				animation.addByPrefix('singLEFT', 'Mom Left Pose', 24, false);
 				// ANIMATION IS CALLED MOM LEFT POSE BUT ITS FOR THE RIGHT
-				// CUZ DAVE IS DUMB!
+				// CUZ BOB IS STOOPID AND DUMB!
 				animation.addByPrefix('singRIGHT', 'Mom Pose Left', 24, false);
 
 				addOffset('idle');
