@@ -1,6 +1,7 @@
 package;
 
 import flixel.FlxG;
+import PlayState.hx
 import flixel.FlxSprite;
 import flixel.animation.FlxBaseAnimation;
 import flixel.graphics.frames.FlxAtlasFrames;
@@ -470,6 +471,40 @@ class Character extends FlxSprite
 				antialiasing = false;
 
 				flipX = true;
+				
+				case 'impostor-pixel':
+				frames = Paths.getSparrowAtlas('weeb/bfSus');
+				animation.addByPrefix('idle', 'BF IDLE', 24, false);
+				animation.addByPrefix('singUP', 'BF UP NOTE', 24, false);
+				animation.addByPrefix('singLEFT', 'BF LEFT NOTE', 24, false);
+				animation.addByPrefix('singRIGHT', 'BF RIGHT NOTE', 24, false);
+				animation.addByPrefix('singDOWN', 'BF DOWN NOTE', 24, false);
+				animation.addByPrefix('singUPmiss', 'BF UP NOTE', 24, false);
+				animation.addByPrefix('singLEFTmiss', 'BF LEFT NOTE', 24, false);
+				animation.addByPrefix('singRIGHTmiss', 'BF RIGHT NOTE', 24, false);
+				animation.addByPrefix('singDOWNmiss', 'BF DOWN NOTE', 24, false);
+
+				addOffset('idle');
+				addOffset("singUP");
+				addOffset("singRIGHT");
+				addOffset("singLEFT");
+				addOffset("singDOWN");
+				addOffset("singUPmiss");
+				addOffset("singRIGHTmiss");
+				addOffset("singLEFTmiss");
+				addOffset("singDOWNmiss");
+
+				setGraphicSize(Std.int(width * 6));
+				updateHitbox();
+
+				playAnim('idle');
+
+				width -= 100;
+				height -= 100;
+
+				antialiasing = false;
+
+				flipX = false;
 			case 'bf-pixel-dead':
 				frames = Paths.getSparrowAtlas('weeb/bfPixelsDEAD');
 				animation.addByPrefix('singUP', "BF Dies pixel", 24, false);
@@ -515,12 +550,23 @@ class Character extends FlxSprite
 				animation.addByPrefix('singLEFT', 'Angry Senpai LEFT NOTE', 24, false);
 				animation.addByPrefix('singRIGHT', 'Angry Senpai RIGHT NOTE', 24, false);
 				animation.addByPrefix('singDOWN', 'Angry Senpai DOWN NOTE', 24, false);
+				animation.addByPrefix('singUP-alt', 'SENPAI UP NOTE', 24, false);
+				animation.addByPrefix('singLEFT-alt', 'SENPAI RIGHT NOTE', 24, false);
+				animation.addByPrefix('singRIGHT-alt', 'SENPAI LEFT NOTE', 24, false);
+				animation.addByPrefix('singDOWN-alt', 'SENPAI DOWN NOTE', 24, false);
+				animation.addByPrefix('hey', 'Senpai Idle', 24, false);
 
 				addOffset('idle');
 				addOffset("singUP", 5, 37);
 				addOffset("singRIGHT");
 				addOffset("singLEFT", 40);
 				addOffset("singDOWN", 14);
+				addOffset("singUP-alt", 5, 37);
+				addOffset("singRIGHT-alt");
+				addOffset("singLEFT-alt", 40);
+				addOffset("singDOWN-alt", 14);
+				addOffset("hey", 14);
+				// playable stuff
 				playAnim('idle');
 
 				setGraphicSize(Std.int(width * 6));
@@ -566,6 +612,7 @@ class Character extends FlxSprite
 				addOffset('idle');
 				addOffset("singUP", -47, 24);
 				addOffset("singRIGHT", -1, -23);
+				// left is for the right bruj
 				addOffset("singLEFT", -30, 16);
 				addOffset("singDOWN", -31, -29);
 				addOffset("singUP-alt", -47, 24);
@@ -613,7 +660,7 @@ class Character extends FlxSprite
 			var dadVar:Float = 4;
 
 			if (curCharacter == 'dad')
-				dadVar = 6.1;
+				dadVar = 6.2;
 			if (holdTimer >= Conductor.stepCrochet * dadVar * 0.001)
 			{
 				dance();
@@ -633,9 +680,6 @@ class Character extends FlxSprite
 
 	private var danced:Bool = false;
 
-	/**
-	 * FOR GF DANCING SHIT
-	 */
 	public function dance()
 	{
 		if (!debugMode)
@@ -663,7 +707,7 @@ class Character extends FlxSprite
 						else
 							playAnim('danceLeft');
 					}
-
+// impostor sussy
 				case 'gf-car':
 					if (!animation.curAnim.name.startsWith('hair'))
 					{
